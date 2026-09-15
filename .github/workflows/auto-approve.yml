@@ -123,6 +123,6 @@ jobs:
           echo "Commit SHA verified: ${current_sha}"
 
           echo "All security checks passed. Approving PR #${PR_NUMBER}..."
-          gh pr review "${PR_NUMBER}" \
-            --repo "${REPO}" \
-            --approve
+#          gh pr review "${PR_NUMBER}" \
+#            --repo "${REPO}" \
+#            --approve
