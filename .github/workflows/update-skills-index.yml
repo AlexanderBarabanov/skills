@@ -82,26 +82,51 @@ jobs:
           fi
           python3 scripts/update_skills_index.py $FLAGS
 
-      - name: Commit and push if anything changed
-        # Skip on dry-run; also safe when inputs are empty (scheduled run)
+      # GitHub App token is required to open a PR
+      - name: Get GitHub App token
+        if: ${{ inputs.dry_run != 'true' }}
+        id: get-github-app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          app-id: ${{ secrets.SKILLS_APP_ID }}
+          private-key: ${{ secrets.SKILLS_APP_PEM }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.event.repository.name }}
+          # Repository permissions: only what's needed to push a branch and open a PR
+          permission-contents: write
+          permission-pull-requests: write
+
+      - name: Create pull request if anything changed
         if: ${{ inputs.dry_run != 'true' }}
         env:
-          SKILLS_PAT: ${{ secrets.SKILLS_PAT }}
+          GH_TOKEN: ${{ steps.get-github-app-token.outputs.token }}
+          APP_SLUG: ${{ steps.get-github-app-token.outputs.app-slug }}
+          BASE_BRANCH: ${{ github.ref_name }}
+          BRANCH: "update-skills-index-${{ github.run_id }}"
         run: |
-          git config user.name  "sys-siv-oep"
-          git config user.email "sys-siv-oep@intel.com"
-          git remote set-url origin "https://x-access-token:${SKILLS_PAT}@github.com/${{ github.repository }}.git"
-
           git add README.md .agents/skills/
 
           if git diff --cached --quiet; then
-            echo "Nothing changed — skipping commit."
+            echo "Nothing changed — skipping."
             exit 0
           fi
 
-          git commit -m "chore: sync skills and update README index \
-          Installed/updated selected skills from skills-config.json and rebuilt README."
-          git push
+          git config user.name  "${APP_SLUG}[bot]"
+          git config user.email "${APP_SLUG}[bot]@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
+          git checkout -b "$BRANCH"
+          git commit -m "chore: sync skills and update README index" \
+                      -m "Installed/updated selected skills from skills-config.json and rebuilt README."
+          git push --force origin "$BRANCH"
+
+          gh pr create \
+            --repo "${{ github.repository }}" \
+            --base "$BASE_BRANCH" \
+            --head "$BRANCH" \
+            --title "chore: sync skills and update README index" \
+            --body "Automated sync of \`.agents/skills/\` and \`README.md\` from \`skills-config.json\` (triggered by \`${{ github.event_name }}\`)." \
+            --reviewer sys-siv-oep
 
       - name: Verify skills installation
         env:
