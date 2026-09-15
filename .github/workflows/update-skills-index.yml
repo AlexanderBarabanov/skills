@@ -98,35 +98,28 @@ jobs:
 
       - name: Create pull request if anything changed
         if: ${{ inputs.dry_run != 'true' }}
-        env:
-          GH_TOKEN: ${{ steps.get-github-app-token.outputs.token }}
-          APP_SLUG: ${{ steps.get-github-app-token.outputs.app-slug }}
-          BASE_BRANCH: ${{ github.ref_name }}
-          BRANCH: "update-skills-index-${{ github.run_id }}"
-        run: |
-          git add README.md .agents/skills/
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          token: ${{ steps.get-github-app-token.outputs.token }}
+          # FIXME: hardcoded for testing in the AlexanderBarabanov fork — replace oep-skills[bot]'s
+          # numeric user id (see https://api.github.com/users/oep-skills%5Bbot%5D) before merging upstream.
+          author: "oep-skills[bot] <oep-skills[bot]@users.noreply.github.com>"
+          committer: "oep-skills[bot] <oep-skills[bot]@users.noreply.github.com>"
+          add-paths: |
+            README.md
+            .agents/skills/
+          commit-message: |
+            chore: sync skills and update README index
 
-          if git diff --cached --quiet; then
-            echo "Nothing changed — skipping."
-            exit 0
-          fi
-
-          git config user.name  "${APP_SLUG}[bot]"
-          git config user.email "${APP_SLUG}[bot]@users.noreply.github.com"
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
-
-          git checkout -b "$BRANCH"
-          git commit -m "chore: sync skills and update README index" \
-                      -m "Installed/updated selected skills from skills-config.json and rebuilt README."
-          git push --force origin "$BRANCH"
-
-          gh pr create \
-            --repo "${{ github.repository }}" \
-            --base "$BASE_BRANCH" \
-            --head "$BRANCH" \
-            --title "chore: sync skills and update README index" \
-            --body "Automated sync of \`.agents/skills/\` and \`README.md\` from \`skills-config.json\` (triggered by \`${{ github.event_name }}\`)." \
-            --reviewer sys-siv-oep
+            Installed/updated selected skills from skills-config.json and rebuilt README.
+          title: "chore: sync skills and update README index"
+          body: |
+            Automated sync of `.agents/skills/` and `README.md` from `skills-config.json`
+            (triggered by `${{ github.event_name }}`).
+          branch: "update-skills-index-${{ github.run_id }}"
+          base: ${{ github.ref_name }}
+          delete-branch: true
+          reviewers: sys-siv-oep
 
       - name: Verify skills installation
         env:
