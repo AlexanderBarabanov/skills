@@ -19,7 +19,7 @@ on:
         required: false
         default: "true"
       dry_run:
-        description: "Preview changes without writing or committing (true/false)"
+        description: "Preview changes without writing files or opening a pull request (true/false)"
         required: false
         default: "false"
       branch:
