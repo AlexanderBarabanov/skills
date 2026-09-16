@@ -5,7 +5,7 @@ on:
     types:
       - review_requested
 
-# No permissions by default; approval uses a dedicated PAT, not GITHUB_TOKEN.
+# No permissions by default
 permissions: {}
 
 jobs:
@@ -19,15 +19,12 @@ jobs:
     # - not a fork PR (head repo is this repo)
     # - opened by the oep-skills GitHub App bot (same app update-skills-index.yml uses to open the PR)
     # - review was requested from sys-siv-oep, by the bot itself
-    # FIXME: repository_owner/bot login/reviewer are temporarily set to the AlexanderBarabanov fork's
-    # test values (test-ov-doc-helper[bot] / AlexanderBarabanov) to match update-skills-index.yml for
-    # fork testing — revert to 'open-edge-platform' / oep-skills[bot] / sys-siv-oep before merging upstream.
     if: ${{
-      github.repository_owner == 'AlexanderBarabanov' &&
+      github.repository_owner == 'open-edge-platform' &&
       github.repository == github.event.pull_request.head.repo.full_name &&
-      github.event.pull_request.user.login == 'test-ov-doc-helper[bot]' &&
-      github.event.requested_reviewer.login == 'AlexanderBarabanov' &&
-      github.event.sender.login == 'test-ov-doc-helper[bot]'
+      github.event.pull_request.user.login == 'oep-skills[bot]' &&
+      github.event.requested_reviewer.login == 'sys-siv-oep' &&
+      github.event.sender.login == 'oep-skills[bot]'
       }}
     steps:
       - name: Capture Commit SHA
@@ -51,8 +48,6 @@ jobs:
   approve:
     name: Approve
     needs: pre-approve
-    # Configure required reviewers / a wait timer on this environment in repo
-    # settings for an extra manual gate on top of the checks below.
     environment:
       name: auto-approve
       deployment: false
@@ -79,24 +74,19 @@ jobs:
         # - PR was opened by the skills-sync GitHub App bot
         # - sys-siv-oep is currently a requested reviewer
         # - the head commit SHA has not changed since the review was requested
-        # FIXME: repository_owner/bot login/reviewer are temporarily set to the AlexanderBarabanov fork's
-        # test values (test-ov-doc-helper[bot] / AlexanderBarabanov) to match update-skills-index.yml for
-        # fork testing — revert to 'open-edge-platform' / oep-skills[bot] / sys-siv-oep before merging upstream.
         if: ${{
-          github.repository_owner == 'AlexanderBarabanov' &&
+          github.repository_owner == 'open-edge-platform' &&
           github.repository == github.event.pull_request.head.repo.full_name &&
-          github.event.pull_request.user.login == 'test-ov-doc-helper[bot]' &&
-          github.event.requested_reviewer.login == 'AlexanderBarabanov' &&
-          github.event.sender.login == 'test-ov-doc-helper[bot]'
+          github.event.pull_request.user.login == 'oep-skills[bot]' &&
+          github.event.requested_reviewer.login == 'sys-siv-oep' &&
+          github.event.sender.login == 'oep-skills[bot]'
           }}
         env:
-          # sys-siv-oep's PAT — used exclusively to auto-approve these PRs, never to push code.
-          # FIXME: reviewer above is temporarily AlexanderBarabanov for fork testing; this PAT still belongs to sys-siv-oep.
-          GH_TOKEN: ${{ secrets.SKILLS_PAT }}
+          GH_TOKEN: ${{ secrets.AUTO_APPROVE_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           REPO: ${{ github.repository }}
           ORIGINAL_SHA: ${{ needs.pre-approve.outputs.commit_sha }}
-          EXPECTED_BOT: "test-ov-doc-helper[bot]"
+          EXPECTED_BOT: "oep-skills[bot]"
         run: |
           echo "Verifying PR author..."
           pr_author=$(gh api "/repos/${REPO}/pulls/${PR_NUMBER}" --jq '.user.login')
@@ -105,10 +95,10 @@ jobs:
             exit 1
           fi
 
-          echo "Verifying AlexanderBarabanov is a requested reviewer..." # FIXME: revert to sys-siv-oep
-          is_reviewer=$(gh api "/repos/${REPO}/pulls/${PR_NUMBER}" --jq '[.requested_reviewers[].login] | contains(["AlexanderBarabanov"])') # FIXME: revert to sys-siv-oep
+          echo "Verifying sys-siv-oep is a requested reviewer..."
+          is_reviewer=$(gh api "/repos/${REPO}/pulls/${PR_NUMBER}" --jq '[.requested_reviewers[].login] | contains(["sys-siv-oep"])')
           if [ "$is_reviewer" != "true" ]; then
-            echo "Error: AlexanderBarabanov is not a requested reviewer" # FIXME: revert to sys-siv-oep
+            echo "Error: sys-siv-oep is not a requested reviewer"
             exit 1
           fi
 

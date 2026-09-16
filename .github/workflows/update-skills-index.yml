@@ -107,10 +107,9 @@ jobs:
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
           token: ${{ steps.get-github-app-token.outputs.token }}
-          # FIXME: hardcoded for testing in the AlexanderBarabanov fork — replace oep-skills[bot]'s
-          # numeric user id (see https://api.github.com/users/oep-skills%5Bbot%5D) before merging upstream.
-          author: test-ov-doc-helper[bot] <276415174+test-ov-doc-helper[bot]@users.noreply.github.com>
-          committer: test-ov-doc-helper[bot] <276415174+test-ov-doc-helper[bot]@users.noreply.github.com>
+          # FIXME: update numeric user id (see https://api.github.com/users/oep-skills%5Bbot%5D) before merging upstream.
+          author: oep-skills[bot] <276415174+test-oep-skills[bot]@users.noreply.github.com>
+          committer: oep-skills[bot] <276415174+test-oep-skills[bot]@users.noreply.github.com>
           add-paths: |
             README.md
             .agents/skills/
@@ -125,7 +124,7 @@ jobs:
           branch: "update-skills-index-${{ github.run_id }}"
           base: ${{ github.ref_name }}
           delete-branch: true
-          reviewers: AlexanderBarabanov # FIXME
+          reviewers: sys-siv-oep
 
       - name: Enable auto-merge
         if: ${{ inputs.dry_run != 'true' && steps.create-pr.outputs.pull-request-number }}
