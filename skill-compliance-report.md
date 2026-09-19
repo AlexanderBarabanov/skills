@@ -1,12 +1,12 @@
 # Skill Compliance Report
 
-**Generated:** 2026-09-19 03:11:52 UTC &nbsp;|&nbsp; **Run:** [35417712684](https://github.com/open-edge-platform/skills/actions/runs/35417712684)
+**Generated:** 2026-09-19 05:24:31 UTC &nbsp;|&nbsp; **Run:** [35423730163](https://github.com/open-edge-platform/skills/actions/runs/35423730163)
 
 ## Executive Summary
 
 | Total Skills | Evaluation Tests | Skills with Benchmarks |
 |:---:|:---:|:---:|
-| 37 | 114 | 20 |
+| 38 | 114 | 20 |
 
 ## Component Summary
 
@@ -22,6 +22,7 @@
 | **Model Download** | 1 | model-download-user |
 | **Multimodal DataPrep microservice** | 1 | multimodal-dataprep-user |
 | **Multimodal Embedding Serving Microservice** | 1 | multimodal-embedding-serving-user |
+| **OEP CLI Installer** | 1 | openedge-cli |
 | **Physical AI Runtime** | 5 | physicalai-runtime-adding-a-camera-backend, physicalai-runtime-adding-a-robot-integration, physicalai-runtime-configuring-inference-pipeline, physicalai-runtime-loading-exported-policies, physicalai-runtime-running-policy-on-robot |
 | **Physical AI Train** | 5 | physicalai-train-adding-a-policy, physicalai-train-benchmarking-a-policy, physicalai-train-exporting-and-validating, physicalai-train-training-a-policy, physicalai-train-working-with-datasets |
 | **Scenescape** | 1 | scenescape-setup |
@@ -53,6 +54,7 @@
 | **model-download-user** | Model Download | 5/8 | +38pp | ✅ Pass<br>Total Tokens: 8538 | Score: 0/100<br>Severity: <span style="color: #27ae60; font-weight: 600;">LOW</span><br>Recommendation: <span style="color: #27ae60; font-weight: 600;">✅ SAFE</span><br>Issues: 0 | [View](https://github.com/open-edge-platform/skills/tree/main/.agents/skills/model-download-user/example-prompts) |
 | **multimodal-dataprep-user** | Multimodal DataPrep microservice | 5/5 | +90pp | ✅ Pass<br>Total Tokens: 2033 | Score: 42/100<br>Severity: <span style="color: #f39c12; font-weight: 600;">MEDIUM</span><br>Recommendation: <span style="color: #f39c12; font-weight: 600;">❌ CAUTION</span><br>Issues: 4<br>Counts: 🟠 3H, 🟡 1M | [View](https://github.com/open-edge-platform/skills/tree/main/.agents/skills/multimodal-dataprep-user/example-prompts) |
 | **multimodal-embedding-serving-user** | Multimodal Embedding Serving Microservice | 5/5 | +67pp | ✅ Pass<br>Total Tokens: 1652 | Score: 0/100<br>Severity: <span style="color: #27ae60; font-weight: 600;">LOW</span><br>Recommendation: <span style="color: #27ae60; font-weight: 600;">✅ SAFE</span><br>Issues: 0 | [View](https://github.com/open-edge-platform/skills/tree/main/.agents/skills/multimodal-embedding-serving-user/example-prompts) |
+| **openedge-cli** | OEP CLI Installer | N/A | N/A | ✅ Pass<br>Total Tokens: 590 | Score: 22/100<br>Severity: <span style="color: #f39c12; font-weight: 600;">MEDIUM</span><br>Recommendation: <span style="color: #f39c12; font-weight: 600;">❌ CAUTION</span><br>Issues: 1<br>Counts: 🟠 1H | N/A |
 | **physicalai-runtime-adding-a-camera-backend** | Physical AI Runtime | N/A | N/A | ✅ Pass<br>Total Tokens: 567 | Score: 0/100<br>Severity: <span style="color: #27ae60; font-weight: 600;">LOW</span><br>Recommendation: <span style="color: #27ae60; font-weight: 600;">✅ SAFE</span><br>Issues: 0 | N/A |
 | **physicalai-runtime-adding-a-robot-integration** | Physical AI Runtime | N/A | N/A | ✅ Pass<br>Total Tokens: 843 | Score: 0/100<br>Severity: <span style="color: #27ae60; font-weight: 600;">LOW</span><br>Recommendation: <span style="color: #27ae60; font-weight: 600;">✅ SAFE</span><br>Issues: 0 | N/A |
 | **physicalai-runtime-configuring-inference-pipeline** | Physical AI Runtime | N/A | N/A | ✅ Pass<br>Total Tokens: 530 | Score: 0/100<br>Severity: <span style="color: #27ae60; font-weight: 600;">LOW</span><br>Recommendation: <span style="color: #27ae60; font-weight: 600;">✅ SAFE</span><br>Issues: 0 | N/A |
