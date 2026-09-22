@@ -1,6 +1,6 @@
 # Skill Compliance Report
 
-**Generated:** 2026-09-21 03:13:14 UTC &nbsp;|&nbsp; **Run:** [35556589474](https://github.com/open-edge-platform/skills/actions/runs/35556589474)
+**Generated:** 2026-09-22 00:08:39 UTC &nbsp;|&nbsp; **Run:** [35670412989](https://github.com/open-edge-platform/skills/actions/runs/35670412989)
 
 ## Executive Summary
 
@@ -33,7 +33,7 @@
 
 | Skill Name | Component | Evals Passed | Skill Uplift | skill-validator metrics | skillspector vulnerabilities | Example Prompts |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **anomalib-adding-a-datamodule** | Anomalib | N/A | N/A | ✅ Pass<br>Total Tokens: 3168 | Score: 0/100<br>Severity: <span style="color: #27ae60; font-weight: 600;">LOW</span><br>Recommendation: <span style="color: #27ae60; font-weight: 600;">✅ SAFE</span><br>Issues: 0 | N/A |
+| **anomalib-adding-a-datamodule** | Anomalib | N/A | N/A | ✅ Pass<br>Total Tokens: 3513 | Score: 0/100<br>Severity: <span style="color: #27ae60; font-weight: 600;">LOW</span><br>Recommendation: <span style="color: #27ae60; font-weight: 600;">✅ SAFE</span><br>Issues: 0 | N/A |
 | **anomalib-adding-a-model** | Anomalib | N/A | N/A | ✅ Pass<br>Total Tokens: 1737 | Score: 0/100<br>Severity: <span style="color: #27ae60; font-weight: 600;">LOW</span><br>Recommendation: <span style="color: #27ae60; font-weight: 600;">✅ SAFE</span><br>Issues: 0 | N/A |
 | **anomalib-benchmarking** | Anomalib | N/A | N/A | ✅ Pass<br>Total Tokens: 855 | Score: 0/100<br>Severity: <span style="color: #27ae60; font-weight: 600;">LOW</span><br>Recommendation: <span style="color: #27ae60; font-weight: 600;">✅ SAFE</span><br>Issues: 0 | N/A |
 | **anomalib-tiled-ensemble** | Anomalib | N/A | N/A | ✅ Pass<br>Total Tokens: 1199 | Score: 0/100<br>Severity: <span style="color: #27ae60; font-weight: 600;">LOW</span><br>Recommendation: <span style="color: #27ae60; font-weight: 600;">✅ SAFE</span><br>Issues: 0 | N/A |
@@ -65,7 +65,7 @@
 | **physicalai-train-exporting-and-validating** | Physical AI Train | N/A | N/A | ✅ Pass<br>Total Tokens: 1351 | Score: 7/100<br>Severity: <span style="color: #27ae60; font-weight: 600;">LOW</span><br>Recommendation: <span style="color: #27ae60; font-weight: 600;">✅ SAFE</span><br>Issues: 1<br>Counts: 🟡 1M | N/A |
 | **physicalai-train-training-a-policy** | Physical AI Train | N/A | N/A | ✅ Pass<br>Total Tokens: 1452 | Score: 0/100<br>Severity: <span style="color: #27ae60; font-weight: 600;">LOW</span><br>Recommendation: <span style="color: #27ae60; font-weight: 600;">✅ SAFE</span><br>Issues: 0 | N/A |
 | **physicalai-train-working-with-datasets** | Physical AI Train | N/A | N/A | ✅ Pass<br>Total Tokens: 1034 | Score: 0/100<br>Severity: <span style="color: #27ae60; font-weight: 600;">LOW</span><br>Recommendation: <span style="color: #27ae60; font-weight: 600;">✅ SAFE</span><br>Issues: 0 | N/A |
-| **scenescape-setup** | Scenescape | N/A | N/A | ✅ Pass<br>Total Tokens: 29648 | Score: 15/100<br>Severity: <span style="color: #27ae60; font-weight: 600;">LOW</span><br>Recommendation: <span style="color: #27ae60; font-weight: 600;">✅ SAFE</span><br>Issues: 19<br>Counts: 🟡 19M | [View](https://github.com/open-edge-platform/skills/tree/main/.agents/skills/scenescape-setup/example-prompts) |
+| **scenescape-setup** | Scenescape | N/A | N/A | ✅ Pass<br>Total Tokens: 29651 | Score: 15/100<br>Severity: <span style="color: #27ae60; font-weight: 600;">LOW</span><br>Recommendation: <span style="color: #27ae60; font-weight: 600;">✅ SAFE</span><br>Issues: 19<br>Counts: 🟡 19M | [View](https://github.com/open-edge-platform/skills/tree/main/.agents/skills/scenescape-setup/example-prompts) |
 | **time-series-analytics-user** | Time Series Analytics Microservice | 5/5 | +48pp | ✅ Pass<br>Total Tokens: 12127 | Score: 0/100<br>Severity: <span style="color: #27ae60; font-weight: 600;">LOW</span><br>Recommendation: <span style="color: #27ae60; font-weight: 600;">✅ SAFE</span><br>Issues: 0 | [View](https://github.com/open-edge-platform/skills/tree/main/.agents/skills/time-series-analytics-user/example-prompts) |
 | **vss-deploy** | Video Search and Summarization | 4/4 | +17pp | ✅ Pass<br>Total Tokens: 11218 | Score: 8/100<br>Severity: <span style="color: #27ae60; font-weight: 600;">LOW</span><br>Recommendation: <span style="color: #27ae60; font-weight: 600;">✅ SAFE</span><br>Issues: 1<br>Counts: 🟠 1H | [View](https://github.com/open-edge-platform/skills/tree/main/.agents/skills/vss-deploy/example-prompts) |
 | **vss-deploy-helm** | Video Search and Summarization | 4/4 | +42pp | ✅ Pass<br>Total Tokens: 7870 | Score: 0/100<br>Severity: <span style="color: #27ae60; font-weight: 600;">LOW</span><br>Recommendation: <span style="color: #27ae60; font-weight: 600;">✅ SAFE</span><br>Issues: 0 | [View](https://github.com/open-edge-platform/skills/tree/main/.agents/skills/vss-deploy-helm/example-prompts) |
